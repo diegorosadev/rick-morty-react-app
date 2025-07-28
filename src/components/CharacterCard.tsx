@@ -40,7 +40,7 @@ interface Props {
                 color={isFavorite ? 'red' : 'text.secondary'}
                 sx={{ cursor: 'pointer', fontWeight: 'bold' }}
               >
-                {isFavorite ? '♥ ' : '♡'}
+                {isFavorite ? '💚' : '🤍'}
               </Typography>
 
               <Button

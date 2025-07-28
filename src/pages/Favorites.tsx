@@ -7,7 +7,7 @@ export const Favorites = () => {
 
   return (
     <div style={{ padding: '2rem' }}>
-      <Typography variant="h4" gutterBottom>Meus Favoritos</Typography>
+      <Typography variant="h4" gutterBottom>My Favorites</Typography>
 
       <Box
       sx={{
