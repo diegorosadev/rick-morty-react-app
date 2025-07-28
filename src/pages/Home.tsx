@@ -28,6 +28,8 @@ export  function Home() {
   const toggleFavorite = (char: Character) => {
     const isFav = favorites.some((f) => f.id === char.id)
     isFav ? removeFavorite(char.id) : addFavorite(char)
+    console.log("toggleFavorite", isFav);
+    
   }
 
   return (
