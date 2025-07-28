@@ -2,7 +2,7 @@ import { useFavoritesStore } from '../store/useFavoritesStore'
 import { Card, CardMedia, CardContent, Typography, IconButton, Box } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 
-export default function Favorites() {
+export const Favorites = () => {
   const { favorites, removeFavorite } = useFavoritesStore()
 
   return (
@@ -38,3 +38,4 @@ export default function Favorites() {
     </div>
   )
 }
+export default Favorites;

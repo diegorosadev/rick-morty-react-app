@@ -10,17 +10,10 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import FilterCard from '../components/FilterCard';
+import CharacterCard from '../components/CharacterCard'
+import type { Character } from '../types/character'
 
-type Character = {
-  id: number
-  name: string
-  image: string
-  species: string
-  gender: string
-  status: string 
-}
-
-export  function Home() {
+export const Home = () => {
     const { data, isLoading } = useQuery({
         queryKey: ['characters'],
         queryFn: async () => {
@@ -92,36 +85,25 @@ export  function Home() {
           },
         }}
       >
-        {filteredCharacters?.map((char) => {
-          const isFav = favorites.some((f) => f.id === char.id)
-          return (
-                <Card key={char.id}>
-                <CardMedia
-                    component="img"
-                    height="200"
-                    image={char.image}
-                    alt={char.name}
+        {isLoading
+        ? Array.from({ length: 8 }).map((_, i) => (
+            <CharacterCard key={i} loading />
+            ))
+        : filteredCharacters.map((char) => {
+            const isFav = favorites.some((f) => f.id === char.id)
+            return (
+                <CharacterCard
+                    key={char.id}
+                    character={char}
+                    isFavorite={isFav}
+                    onToggleFavorite={() => toggleFavorite(char)}
                 />
-                <CardContent>
-                    <Typography variant="h6">{char.name}</Typography>
-                    <Typography variant="body2">{char.species}</Typography>
-                    <IconButton onClick={() => toggleFavorite(char)} color="primary">
-                    {isFav ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-                    </IconButton>
+            )
+            })}
 
-                    <Button
-                        size="small"
-                        variant="outlined"
-                        onClick={() => navigate(`/character/${char.id}`)}
-                    >
-                            Show Details
-                    </Button>
-                </CardContent>
-                </Card>
-          )
-        })}
       </Box>
     </Box>
   </Box>
   )  
 }
+export default Home;

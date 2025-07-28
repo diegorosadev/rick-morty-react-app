@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { Home } from './pages/Home';
-import Favorites from './pages/Favorites';
 import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
-import { CharacterDetail } from './pages/CharacterDetail' // importa a nova página
+import { lazy, Suspense } from 'react'; 
+
+const Home = lazy(() => import('./pages/Home'));
+const Favorites = lazy(() => import('./pages/Favorites'));
+const CharacterDetail = lazy(() => import('./pages/CharacterDetail'));
 
 function App() {
   return (
@@ -18,11 +20,14 @@ function App() {
       </AppBar>
 
       <Box sx={{ mt: 10, px: 2 }}>
+      <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/favorites" element={<Favorites />} />+
           <Route path="/character/:id" element={<CharacterDetail />} />
         </Routes>
+        </Suspense>
+
       </Box>
     </BrowserRouter>
   );

@@ -1,7 +1,13 @@
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { api } from '../services/api'
-import { Box, Typography, Card, CardMedia, CircularProgress } from '@mui/material'
+import {
+  Box,
+  Typography,
+  Card,
+  CardMedia,
+  Skeleton
+} from '@mui/material'
 
 type Character = {
   id: number
@@ -14,7 +20,7 @@ type Character = {
   location: { name: string }
 }
 
-export function CharacterDetail() {
+export const CharacterDetail = () => {
   const { id } = useParams()
 
   const { data, isLoading } = useQuery({
@@ -25,29 +31,40 @@ export function CharacterDetail() {
     }
   })
 
-  if (isLoading) {
-    return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 4 }}>
-        <CircularProgress />
-      </Box>
-    )
-  }
-
-  if (!data) return <p>Character not found.</p>
+  const isLoadingOrNull = isLoading || !data
 
   return (
     <Box sx={{ padding: 4 }}>
       <Card sx={{ maxWidth: 400, margin: '0 auto' }}>
-        <CardMedia component="img" height="400" image={data.image} alt={data.name} />
+        {isLoadingOrNull ? (
+          <Skeleton variant="rectangular" height={400} />
+        ) : (
+          <CardMedia component="img" height="400" image={data.image} alt={data.name} />
+        )}
+
         <Box sx={{ padding: 2 }}>
-          <Typography variant="h5">{data.name}</Typography>
-          <Typography>Status: {data.status}</Typography>
-          <Typography>Species: {data.species}</Typography>
-          <Typography>Gender: {data.gender}</Typography>
-          <Typography>Origin: {data.origin.name}</Typography>
-          <Typography>Current Location: {data.location.name}</Typography>
+          <Typography variant="h5">
+            {isLoadingOrNull ? <Skeleton width="80%" /> : data.name}
+          </Typography>
+          <Typography>
+            {isLoadingOrNull ? <Skeleton width="60%" /> : `Status: ${data.status}`}
+          </Typography>
+          <Typography>
+            {isLoadingOrNull ? <Skeleton width="60%" /> : `Species: ${data.species}`}
+          </Typography>
+          <Typography>
+            {isLoadingOrNull ? <Skeleton width="60%" /> : `Gender: ${data.gender}`}
+          </Typography>
+          <Typography>
+            {isLoadingOrNull ? <Skeleton width="80%" /> : `Origin: ${data.origin.name}`}
+          </Typography>
+          <Typography>
+            {isLoadingOrNull ? <Skeleton width="80%" /> : `Current Location: ${data.location.name}`}
+          </Typography>
         </Box>
       </Card>
     </Box>
   )
 }
+
+export default CharacterDetail
