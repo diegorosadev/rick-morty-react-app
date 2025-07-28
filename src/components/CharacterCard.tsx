@@ -1,60 +1,133 @@
-import { Card, CardContent, Typography, Skeleton, Button } from '@mui/material';
-import type { Character } from '../types/character';
-import { useNavigate } from 'react-router-dom';
+import {
+    Box,
+    Card,
+    CardContent,
+    CardMedia,
+    Typography,
+    IconButton,
+    Skeleton,
+    Button,
+  } from '@mui/material'
+  import FavoriteIcon from '@mui/icons-material/Favorite'
+  import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+  import type { Character } from '../types/character'
+  import { useNavigate } from 'react-router-dom';
 
-interface Props {
-    character?: Character;
-    loading?: boolean;
-    isFavorite?: boolean;
-    onToggleFavorite?: () => void;
-  }  
-
-  export const CharacterCard = ({
+  interface Props {
+    character?: Character
+    loading?: boolean
+    isFavorite?: boolean
+    onToggleFavorite?: () => void
+  }
+  
+  export default function CharacterCard({
     character,
     loading,
     isFavorite,
     onToggleFavorite,
-  }: Props) => {
+  }: Props) {
     const navigate = useNavigate();
 
-    return (
-      <Card sx={{ width: 200 }}>
-        {loading ? (
-          <>
-            <Skeleton variant="rectangular" height={140} />
-            <CardContent>
-              <Skeleton width="80%" />
-              <Skeleton width="60%" />
-            </CardContent>
-          </>
-        ) : (
-          <>
-            <img src={character?.image} alt={character?.name} height={'50%'} />
-            <CardContent>
-              <Typography variant="h6">{character?.name}</Typography>
-              <Typography variant="body2">{character?.species}</Typography>
-              <Typography variant="body2">{character?.status}</Typography>
+    if (loading) {
+      return (
+        <Card sx={{ borderRadius: 3 }}>
+          <Skeleton variant="rectangular" height={200} />
+          <CardContent>
+            <Skeleton width="60%" />
+            <Skeleton width="40%" />
+            <Skeleton width="50%" />
+          </CardContent>
+        </Card>
+      )
+    }
   
-              <Typography
-                onClick={onToggleFavorite}
-                color={isFavorite ? 'red' : 'text.secondary'}
-                sx={{ cursor: 'pointer', fontWeight: 'bold' }}
-              >
-                {isFavorite ? '💚' : '🤍'}
-              </Typography>
+    if (!character) return null
+  
+    const statusColor =
+      character.status === 'Alive'
+        ? 'green'
+        : character.status === 'Dead'
+        ? 'red'
+        : 'gray'
+  
+    return (
+      <Card
+        sx={{
+          backgroundColor: '#2d2d2d',
+          color: '#fff',
+          borderRadius: 3,
+          overflow: 'hidden',
+          position: 'relative',
+        }}
+      >
+        <CardMedia
+          component="img"
+          height="200"
+          image={character.image}
+          alt={character.name}
+        />
+  
+        <IconButton
+          onClick={onToggleFavorite}
+          sx={{
+            position: 'absolute',
+            top: 8,
+            right: 8,
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            color: '#fff',
+            '&:hover': {
+              backgroundColor: 'rgba(0,0,0,0.7)',
+            },
+          }}
+        >
+          {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+        </IconButton>
+  
+        <CardContent>
+          <Typography variant="h6" fontWeight={700}>
+            {character.name}
+          </Typography>
+  
+          <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+            <Box
+              sx={{
+                width: 8,
+                height: 8,
+                borderRadius: '50%',
+                backgroundColor: statusColor,
+                display: 'inline-block',
+                mr: 1,
+              }}
+            />
+            {character.status} - {character.species}
+          </Typography>
+  
+          <Typography variant="body2" color="gray">
+            Last known location:
+          </Typography>
+          <Typography variant="body2" mb={1}>
+            {character.location.name}
+          </Typography>
+  
+          <Typography variant="body2" color="gray">
+            First seen in:
+          </Typography>
+          <Typography variant="body2">
+            {character.origin.name}
+          </Typography>
 
-              <Button
-                size="small"
-                variant="outlined"
-                onClick={() => navigate(`/character/${character?.id}`)}
-                sx={{ marginTop: 1 }}
-                >
+          <Box sx={{
+            display: "flex",
+            justifyContent: "center",
+
+          }}>
+            <Button onClick={() => navigate(`/character/${character.id}`)}>
                 Show Details
             </Button>
-            </CardContent>
-          </>
-        )}
+          </Box>
+
+        </CardContent>
       </Card>
-    );
+    )
   }
-  export default CharacterCard;
+  

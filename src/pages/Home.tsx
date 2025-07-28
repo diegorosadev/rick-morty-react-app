@@ -12,6 +12,7 @@ import { useState } from 'react'
 import FilterCard from '../components/FilterCard';
 import CharacterCard from '../components/CharacterCard'
 import type { Character } from '../types/character'
+import Hero from '../components/Hero'
 
 export const Home = () => {
     const { data, isLoading } = useQuery({
@@ -50,60 +51,73 @@ export const Home = () => {
   
 
   return (
-    <Box sx={{ padding: 4 }}>
-    <Typography variant="h4" gutterBottom textAlign="center">
-      Rick and Morty Characters
-    </Typography>
+<Box sx={{ width: '100%', overflowX: 'hidden' }}>
 
-    <FilterCard
-        status={status}
-        setStatus={setStatus}
-        species={species}
-        setSpecies={setSpecies}
-        gender={gender}
-        setGender={setGender}
-        name={name}
-        setName={setName}
-        statusOptions={statusOptions}
-        speciesOptions={speciesOptions}
-        genderOptions={genderOptions}
-        />
+        <Hero />
+        <Box sx={{ 
+            width: '100%',
+            overflowX: 'hidden',
+            minHeight: '320px',
+            backgroundColor: '#202329',
+            color: '#111',
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            position: 'relative',
+            px: 2,
+         }}>
 
-  
-    {isLoading && <p>Loading...</p>}
-  
-    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-      <Box
-        sx={{
-          display: 'grid',
-          gap: 2,
-          gridTemplateColumns: {
-            xs: '1fr',
-            sm: 'repeat(2, 1fr)',
-            md: 'repeat(3, 1fr)',
-            lg: 'repeat(4, 1fr)',
-          },
-        }}
-      >
-        {isLoading
-        ? Array.from({ length: 8 }).map((_, i) => (
-            <CharacterCard key={i} loading />
+        <FilterCard
+            status={status}
+            setStatus={setStatus}
+            species={species}
+            setSpecies={setSpecies}
+            gender={gender}
+            setGender={setGender}
+            name={name}
+            setName={setName}
+            statusOptions={statusOptions}
+            speciesOptions={speciesOptions}
+            genderOptions={genderOptions}
+            />
+
+    
+        {isLoading && <p>Loading...</p>}
+    
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Box
+            sx={{
+                display: 'grid',
+                gap: 2,
+                gridTemplateColumns: {
+                    xs: '1fr',
+                    sm: 'repeat(2, 1fr)',
+                    md: 'repeat(3, 1fr)',
+                    lg: 'repeat(4, 1fr)',
+                },
+            }}
+            >
+            {isLoading
+            ? Array.from({ length: 8 }).map((_, i) => (
+                <CharacterCard key={i} loading />
             ))
-        : filteredCharacters.map((char) => {
-            const isFav = favorites.some((f) => f.id === char.id)
-            return (
-                <CharacterCard
+            : filteredCharacters.map((char) => {
+                const isFav = favorites.some((f) => f.id === char.id)
+                return (
+                    <CharacterCard
                     key={char.id}
                     character={char}
                     isFavorite={isFav}
                     onToggleFavorite={() => toggleFavorite(char)}
-                />
-            )
+                    />
+                )
             })}
 
-      </Box>
+        </Box>
+        </Box>
     </Box>
-  </Box>
+    </Box>
   )  
 }
 export default Home;

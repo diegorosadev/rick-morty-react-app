@@ -28,11 +28,11 @@ export default function FilterCard({
   genderOptions
 }: FilterCardProps) {
   return (
-    <Card sx={{ mb: 4, p: 2, backgroundColor: '#1c1c1c', color: 'white' }}>
+    <Card sx={{ width: "1200px",mb: 4, mt: 4, p: 2, backgroundColor: '#1c1c1c', color: 'white' }}>
       <CardContent>
         <Typography variant="h6" gutterBottom>Filters</Typography>
 
-        <Box display="flex" flexDirection="column" gap={2}>
+        <Box display="flex" flexDirection="row" gap={2}>
           <TextField
             label="Search by name"
             variant="outlined"
