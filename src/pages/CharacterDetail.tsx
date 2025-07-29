@@ -78,7 +78,7 @@ export const CharacterDetail = () => {
   }
 
   return (
-    <Box sx={{ backgroundColor: '#121212', color: '#fff', width: '100vw', minHeight: '90vh', padding: 4.3 }}>
+    <Box sx={{ backgroundColor: '#121212', color: '#fff', width: '100vw', minHeight: '100vh', padding: 4.3 }}>
         <Button variant="contained" 
         onClick={() => navigate('/')}
         sx={{ 
