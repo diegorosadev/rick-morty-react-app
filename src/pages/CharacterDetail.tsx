@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { api } from '../services/api'
 import {
@@ -6,8 +6,8 @@ import {
   Typography,
   CardMedia,
   Paper,
-  CircularProgress,
   Button,
+  Skeleton,
 } from '@mui/material'
 
 type Character = {
@@ -22,15 +22,10 @@ type Character = {
   episode: string[]
 }
 
-type Episode = {
-  id: number
-  name: string
-  air_date: string
-  episode: string
-}
 
 export const CharacterDetail = () => {
   const { id } = useParams()
+  const navigate = useNavigate()
 
   const { data: character, isLoading } = useQuery({
     queryKey: ['character', id],
@@ -50,50 +45,83 @@ export const CharacterDetail = () => {
     }
   })
 
-  if (isLoading || !character) {
+  if (isLoading) {
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 10 }}>
-        <CircularProgress color="info" />
+      <Box sx={{ backgroundColor: '#121212', color: '#fff', minHeight: '100vh', p: 4 }}>
+        <Skeleton animation="wave"  variant="rectangular" width={120} height={36} sx={{ mb: 3 }} />
+        <Skeleton animation="wave"  variant="text" width={200} height={60} sx={{ mb: 4 }} />
+
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 4 }}>
+          <Box sx={{ flex: 1 }}>
+            <Skeleton animation="wave"  variant="rectangular" width="100%" height={300} sx={{ mb: 2 }} />
+
+            <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+              <Skeleton animation="wave"  variant="rectangular" height={70} width="100%" />
+              <Skeleton animation="wave"  variant="rectangular" height={70} width="100%" />
+              <Skeleton animation="wave"  variant="rectangular" height={70} width="100%" />
+            </Box>
+
+            <Skeleton animation="wave"  variant="rectangular" width="100%" height={60} sx={{ mb: 2 }} />
+            <Skeleton animation="wave"  variant="rectangular" width="100%" height={60} />
+          </Box>
+
+          <Box sx={{ flex: 1.5 }}>
+            <Skeleton animation="wave"  variant="text" width={150} height={30} sx={{ mb: 2 }} />
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+              {[1, 2, 3, 4].map((i) => (
+                <Skeleton animation="wave"  key={i} variant="rectangular" width="calc(50% - 8px)" height={100} />
+              ))}
+            </Box>
+          </Box>
+        </Box>
       </Box>
     )
   }
 
   return (
     <Box sx={{ backgroundColor: '#121212', color: '#fff', minHeight: '100vh', p: 4 }}>
-      <Button variant="contained" sx={{ mb: 3 }}>Back to Home</Button>
+        <Button variant="contained" 
+        onClick={() => navigate('/')}
+        sx={{ 
+            mb: 3, 
+            mt: 10, 
+            backgroundColor: '#00d2ff', 
+            color: '#000', 
+            fontWeighgroundColort: 'bold', '&:hover': { back: '#00c467' } }}
+        >
+            Back to Home
+        </Button>
 
       <Typography
         variant="h2"
         sx={{
-          fontFamily: 'Creepster, cursive',
-          color: '#00e676',
-          mb: 4,
-          textShadow: '4px 4px #0f0de2',
+            fontFamily: 'Creepster, cursive',
+            color: '#00e676',
+            mb: 4,
+            textShadow: '4px 4px #0f0de2',
         }}
       >
         DETAILS
       </Typography>
 
-      {/* Layout principal */}
       <Box sx={{ display: 'flex',  flexDirection: { xs: 'column', md: 'row' }, gap: 4 }}>
 
-        {/* Coluna esquerda */}
         <Box sx={{ flex: 1 }}>
           <Paper sx={{ p: 2, backgroundColor: '#000', borderRadius: 2, mb: 2 }}>
             <Typography align="center" sx={{ fontFamily: 'cursive', fontWeight: 'bold', mb: 1, color: '#00d2ff' }}>
-              {character.name}
+              {character!.name}
             </Typography>
 
             <CardMedia
               component="img"
-              image={character.image}
-              alt={character.name}
+              image={character!.image}
+              alt={character!.name}
               sx={{ borderRadius: 2, width: '100%', mb: 2 }}
             />
 
           </Paper>
             <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
-              {[character.status, character.species, character.gender].map((value, idx) => (
+              {[character!.status, character!.species, character!.gender].map((value, idx) => (
                 <Box key={idx} sx={{ flex: 1 }}>
                   <Paper sx={{ backgroundColor: '#000', p: 1, textAlign: 'center' }}>
                     <Typography fontSize={12} fontWeight="bold" sx={{color: "#00d2ff"}}>
@@ -107,12 +135,12 @@ export const CharacterDetail = () => {
 
             <Paper sx={{ mt: 2, p: 2, backgroundColor: '#000' }}>
               <Typography sx={{color: "#00d2ff"}} fontWeight="bold" mb={0.5}>Origin</Typography>
-              <Typography sx={{color: "#fff"}}>{character.origin.name}</Typography>
+              <Typography sx={{color: "#fff"}}>{character!.origin.name}</Typography>
             </Paper>
 
             <Paper sx={{ mt: 2, p: 2, backgroundColor: '#000' }}>
               <Typography sx={{color: "#00d2ff"}} fontWeight="bold" mb={0.5}>Location</Typography>
-              <Typography sx={{color: "#fff"}}>{character.location.name}</Typography>
+              <Typography sx={{color: "#fff"}}>{character!.location.name}</Typography>
             </Paper>
         </Box>
 

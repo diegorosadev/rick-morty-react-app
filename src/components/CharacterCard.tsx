@@ -11,8 +11,8 @@ import {
   import FavoriteIcon from '@mui/icons-material/Favorite'
   import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
   import type { Character } from '../types/character'
-  import { useNavigate } from 'react-router-dom';
-
+  import { useNavigate } from 'react-router-dom'
+  
   interface Props {
     character?: Character
     loading?: boolean
@@ -26,16 +26,29 @@ import {
     isFavorite,
     onToggleFavorite,
   }: Props) {
-    const navigate = useNavigate();
-
+    const navigate = useNavigate()
+  
     if (loading) {
       return (
-        <Card sx={{ borderRadius: 3 }}>
-          <Skeleton variant="rectangular" height={200} />
+        <Card
+          sx={{
+            width: '300px',
+            borderRadius: 3,
+            backgroundColor: '#2d2d2d',
+            color: '#fff',
+            overflow: 'hidden',
+          }}
+        >
+          <Skeleton variant="rectangular" width="100%" height={200} animation="wave" />
           <CardContent>
-            <Skeleton width="60%" />
-            <Skeleton width="40%" />
-            <Skeleton width="50%" />
+            <Skeleton animation="wave"  height={28} width="80%" />
+            <Skeleton animation="wave"  height={22} width="60%" />
+            <Skeleton animation="wave"  height={16} width="40%" />
+            <Skeleton animation="wave"  height={16} width="70%" />
+            <Skeleton animation="wave"  height={16} width="40%" />
+            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
+              <Skeleton animation="wave"  variant="rounded" width={100} height={36} />
+            </Box>
           </CardContent>
         </Card>
       )
@@ -58,7 +71,7 @@ import {
           borderRadius: 3,
           overflow: 'hidden',
           position: 'relative',
-          width: "300px"
+          width: '300px',
         }}
       >
         <CardMedia
@@ -89,7 +102,10 @@ import {
             {character.name}
           </Typography>
   
-          <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+          <Typography
+            variant="body2"
+            sx={{ display: 'flex', alignItems: 'center', mb: 1 }}
+          >
             <Box
               sx={{
                 width: 8,
@@ -113,27 +129,21 @@ import {
           <Typography variant="body2" color="gray">
             First seen in:
           </Typography>
-          <Typography variant="body2">
-            {character.origin.name}
-          </Typography>
-
-          <Box sx={{
-            display: "flex",
-            justifyContent: "center",
-
-          }}>
+          <Typography variant="body2">{character.origin.name}</Typography>
+  
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Button
-                sx={{
-                    color: '#00BCD4',
-                    '&:hover': {
-                    color: '#00acc1',
-                    }
-                }}
-                onClick={() => navigate(`/character/${character.id}`)}>
-                Show Details
+              sx={{
+                color: '#00BCD4',
+                '&:hover': {
+                  color: '#00acc1',
+                },
+              }}
+              onClick={() => navigate(`/character/${character.id}`)}
+            >
+              Show Details
             </Button>
           </Box>
-
         </CardContent>
       </Card>
     )

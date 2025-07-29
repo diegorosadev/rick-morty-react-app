@@ -1,5 +1,5 @@
 import { useFavoritesStore } from '../store/useFavoritesStore'
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 import { useEffect, useState } from 'react'
 import type { Character } from '../types/character'
 import { useQuery } from '@tanstack/react-query'

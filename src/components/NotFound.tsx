@@ -1,4 +1,3 @@
-// src/components/NotFound.tsx
 import { Box, Typography } from '@mui/material'
 
 interface NotFoundProps {
