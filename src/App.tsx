@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { AppBar, Toolbar, Button, Box } from '@mui/material';
+import { AppBar, Toolbar, Box } from '@mui/material';
 import { lazy, Suspense } from 'react'; 
 import { TabNavigation } from './components/TabNavigation';
 import logo from './assets/img/rick-and-morty-logo.svg'
