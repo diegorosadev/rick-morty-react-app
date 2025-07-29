@@ -11,7 +11,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <AppBar position="fixed" sx={{ width: '100%', backgroundColor: '#0a0a0a' }}>
+      <AppBar position="fixed" sx={{ width: '100vw', backgroundColor: '#0a0a0a' }}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Box
             component="img"
@@ -27,14 +27,14 @@ function App() {
 
       </AppBar>
 
-      <Box sx={{ mt: 10, px: 2 }}>
+      <Box sx={{ width: '100%' }}>
         <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/favorites" element={<Favorites />} />
-            <Route path="/character/:id" element={<CharacterDetail />} />
-          </Routes>
-        </Suspense>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/favorites" element={<Favorites />} />
+              <Route path="/character/:id" element={<CharacterDetail />} />
+            </Routes>
+          </Suspense>
       </Box>
     </BrowserRouter>
   );

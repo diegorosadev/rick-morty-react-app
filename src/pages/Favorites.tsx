@@ -53,18 +53,18 @@ export const Favorites = () => {
   })
 
   return (
- <Box 
+    <Box 
         sx={{ 
-            width: '100%',
-            overflowX: 'hidden', 
-            backgroundColor: '#202329' 
+            width: '100vw',
+            backgroundColor: '#202329',
+            margin: 0,
+            padding: 0,
         }}>
 
             <Hero />
 
             <Box sx={{ 
                 width: '100%',
-                overflowX: 'hidden',
                 minHeight: '320px',
                 color: '#111',
                 display: "flex",
@@ -72,7 +72,6 @@ export const Favorites = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 position: 'relative',
-                px: 2,
             }}>
 
             <FilterCard
