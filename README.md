@@ -1,42 +1,33 @@
-# rick-morty-react-app
-Aplicação React com TypeScript e Material UI para explorar personagens da série Rick and Morty via API pública.
+# Rick and Morty Explorer 👽🚀
 
-| Camada     | Stack                                                            |
-| ---------- | ---------------------------------------------------------------- |
-| ⚙️ Core    | Vite + React 18 + TypeScript                                     |
-| 🎨 UI      | Material UI (MUI)                                                |
-| 🌐 API     | TanStack Query (`@tanstack/react-query`)                         |
-| 🧠 Estado  | Zustand (gerenciar favoritos, contador, etc)                     |
-| 🧭 Rotas   | React Router DOM                                                 |
-| 📦 Estilos | SCSS (ou pode usar o `sx` do MUI se quiser 100% com Material UI) |
-| 💅 Extra   | Axios (requisições) + React Hook Form (se usar forms de filtro)  |
-| 🚀 Deploy  | Vercel (fácil e rápido)                                          |
+Aplicação React com TypeScript + Material UI para explorar personagens da série **Rick and Morty** via API pública.
 
+### 🔗 Acesse o Projeto:
+👉 [rick-morty-react-app.vercel.app](https://rick-morty-react-app.vercel.app/)
 
-# UI + estilo
-npm install @mui/material @emotion/react @emotion/styled
+---
 
-# Rotas
-npm install react-router-dom
+## 🧠 Stack Utilizada
 
-# API requests
-npm install axios
+| Camada           | Tecnologias                                                                                                                                 |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| Core             | [Vite](https://vitejs.dev/) + React 18 + TypeScript                                                                                         |
+| UI               | [Material UI (MUI)](https://mui.com/)                                                                                                       |
+| API              | [TanStack Query](https://tanstack.com/query/latest) (`@tanstack/react-query`)                                                              |
+| Estado Global    | [Zustand](https://zustand-demo.pmnd.rs/) (para favoritos, contador, etc)                                                                   |
+| Estilo           | SCSS modular ou `sx` do MUI (100% integrado ao Material UI)                                                                                 |
+| Requisições HTTP | [Axios](https://axios-http.com/)                                                                                                            |
+| Formulários      | [React Hook Form](https://react-hook-form.com/) *(opcional, para filtros com validação)*                                                   |
+| Deploy           | [Vercel](https://vercel.com/) *(CI/CD automático, rápido e gratuito)*                                                                      |
 
-# TanStack Query
-npm install @tanstack/react-query
+---
 
-# Gerenciador de estado
-npm install zustand
+## 🧪 Instalação e Execução Local
 
-# Formulários (opcional, se for usar filtros com validação)
-npm install react-hook-form
+```bash
+# Instale as dependências
+npm install
 
-src/
-├── components/         # Cards, filtros, header, etc
-├── pages/              # Home, Detalhes, Favoritos
-├── store/              # Zustand (ex: useFavoritesStore.ts)
-├── services/           # api.ts, hooks de TanStack Query
-├── styles/             # SCSS globais (se usar)
-├── App.tsx
-├── main.tsx
-
+# Rode a aplicação localmente
+npm run dev
+```
