@@ -13,6 +13,7 @@ export const Footer = () => {
         color: '#ccc',
         py: 4,
         textAlign: 'center',
+        width: '100%'
       }}
     >
       <Stack spacing={3} alignItems="center">
@@ -27,12 +28,12 @@ export const Footer = () => {
         <Stack direction="row" spacing={3} justifyContent="center" sx={{ mt: 1 }}>
             <Stack alignItems="center">
                 <Typography variant="caption" color="gray">Deployed on Vercel</Typography>
-                <img src="src\assets\img\Vercel_logo_2025.svg" alt="Vercel" height={20} />
+                <img src="public\img\Vercel_logo_2025.svg" alt="Vercel" height={20} />
             </Stack>
 
             <Stack alignItems="center">
                 <Typography variant="caption" color="gray">Built with React</Typography>
-                <img src="src\assets\img\React_logo_wordmark.png" alt="React" height={20} />
+                <img src="public\img\React_logo_wordmark.png" alt="React" height={20} />
             </Stack>
         </Stack>
 

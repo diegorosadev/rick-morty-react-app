@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppBar, Toolbar, Box } from '@mui/material';
 import { lazy, Suspense } from 'react'; 
 import { TabNavigation } from './components/TabNavigation';
-import logo from './assets/img/rick-and-morty-logo.svg'
+import logo from '/public/img/rick-and-morty-logo.svg'
 import BackToTop from './components/BackToTop';
 
 const Home = lazy(() => import('./pages/Home'));

@@ -59,12 +59,16 @@ export const Home = () => {
              backgroundColor: '#202329',
              margin: 0,
              padding: 0,
+             display: 'flex',
+             flexDirection: 'column',
+             justifyContent:'center',
+             alignItems: 'center'
          }}>
  
              <Hero />
  
              <Box sx={{ 
-                 width: '100%',
+                 width: '78%',
                  minHeight: '320px',
                  color: '#111',
                  display: "flex",

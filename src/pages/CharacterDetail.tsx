@@ -22,7 +22,6 @@ type Character = {
   episode: string[]
 }
 
-
 export const CharacterDetail = () => {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -47,7 +46,7 @@ export const CharacterDetail = () => {
 
   if (isLoading) {
     return (
-      <Box sx={{ backgroundColor: '#121212', color: '#fff', minHeight: '100vh', p: 4 }}>
+      <Box sx={{ backgroundColor: '#121212', color: '#fff', width: '100vw', minHeight: '100vh' }}>
         <Skeleton animation="wave"  variant="rectangular" width={120} height={36} sx={{ mb: 3 }} />
         <Skeleton animation="wave"  variant="text" width={200} height={60} sx={{ mb: 4 }} />
 
@@ -79,7 +78,7 @@ export const CharacterDetail = () => {
   }
 
   return (
-    <Box sx={{ backgroundColor: '#121212', color: '#fff', minHeight: '100vh', p: 4 }}>
+    <Box sx={{ backgroundColor: '#121212', color: '#fff', width: '100vw', minHeight: '90vh', padding: 4.3 }}>
         <Button variant="contained" 
         onClick={() => navigate('/')}
         sx={{ 
@@ -92,6 +91,8 @@ export const CharacterDetail = () => {
             Back to Home
         </Button>
 
+
+      <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', width: '95%' }}>
       <Typography
         variant="h2"
         sx={{
@@ -104,7 +105,11 @@ export const CharacterDetail = () => {
         DETAILS
       </Typography>
 
-      <Box sx={{ display: 'flex',  flexDirection: { xs: 'column', md: 'row' }, gap: 4 }}>
+        <Box
+            sx={{
+                display: 'flex',  flexDirection: { xs: 'column', md: 'row' }, gap: 4 , width: '95%' 
+            }}
+        >
 
         <Box sx={{ flex: 1 }}>
           <Paper sx={{ p: 2, backgroundColor: '#000', borderRadius: 2, mb: 2 }}>
@@ -144,17 +149,28 @@ export const CharacterDetail = () => {
             </Paper>
         </Box>
 
-        {/* Coluna direita */}
-        <Box sx={{ flex: 1.5 }}>
+        <Box sx={{ flex: 1.5, display: 'flex', flexDirection: 'column', justifyContent: 'center', tex: 'center' }}>
           <Typography variant="h5" sx={{ fontFamily: 'cursive', mb: 2 }}>EPISODES</Typography>
 
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+          <Box
+           className="episodes-scroll"
+            sx={{
+                flex: 1.5,
+                display: 'flex',
+                flexDirection: 'column',
+                maxHeight: '69.5vh', 
+                overflowY: 'auto',  
+                scrollbarWidth: 'thin',
+                scrollbarColor: '#00d2ff #111'
+            }}
+            >
             {episodes?.map((ep) => (
               <Paper
                 key={ep.id}
                 sx={{
                   backgroundColor: '#000',
                   p: 2,
+                  mb: 2,
                   width: 'calc(50% - 8px)',
                   minWidth: '240px'
                 }}
@@ -167,6 +183,8 @@ export const CharacterDetail = () => {
           </Box>
         </Box>
       </Box>
+      </Box>
+
     </Box>
   )
 }

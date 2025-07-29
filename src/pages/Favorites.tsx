@@ -54,47 +54,52 @@ export const Favorites = () => {
   })
 
   return (
-    <Box 
-        sx={{ 
-            width: '100vw',
-            backgroundColor: '#202329',
-            margin: 0,
-            padding: 0,
-        }}>
-
-            <Hero />
-
-            <Box sx={{ 
-                width: '100%',
-                minHeight: '320px',
-                color: '#111',
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                position: 'relative',
-            }}>
+  <Box 
+         sx={{ 
+             width: '100vw',
+             backgroundColor: '#202329',
+             margin: 0,
+             padding: 0,
+             display: 'flex',
+             flexDirection: 'column',
+             justifyContent:'center',
+             alignItems: 'center'
+         }}>
+ 
+             <Hero />
+ 
+             <Box sx={{ 
+                 width: '78%',
+                 minHeight: '320px',
+                 color: '#111',
+                 display: "flex",
+                 flexDirection: "column",
+                 justifyContent: "center",
+                 alignItems: "center",
+                 position: 'relative',
+                 
+             }}>
                 
         {!isLoading
              && filteredCharacters.length > 0 && 
                 <FilterCard
-                status={status}
-                setStatus={setStatus}
-                species={species}
-                setSpecies={setSpecies}
-                gender={gender}
-                setGender={setGender}
-                name={name}
-                setName={setName}
-                statusOptions={statusOptions}
-                speciesOptions={speciesOptions}
-                genderOptions={genderOptions}
+                    status={status}
+                    setStatus={setStatus}
+                    species={species}
+                    setSpecies={setSpecies}
+                    gender={gender}
+                    setGender={setGender}
+                    name={name}
+                    setName={setName}
+                    statusOptions={statusOptions}
+                    speciesOptions={speciesOptions}
+                    genderOptions={genderOptions}
                 />
              }
         
         {isLoading && <p style={{ color: '#fff' }}>Loading...</p>}
 
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', mb: filteredCharacters.length > 0 && filteredCharacters.length < 20 ? 4 : 0 }}>
                 <Box
                     sx={{
                         display: 'grid',
@@ -123,12 +128,11 @@ export const Favorites = () => {
             {!isLoading
              && filteredCharacters.length === 0 && <NotFound message="No favorite characters found." />}
 
-
           </Box>
         </Box>
       </Box>
 
-        {!isLoading && filteredCharacters.length > 20 && totalPages > 1 && (
+        {!isLoading && filteredCharacters.length > 19 && totalPages > 1 && (
         <PaginationControls
             page={page}
             totalPages={totalPages}

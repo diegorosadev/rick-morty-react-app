@@ -28,7 +28,7 @@ export default function FilterCard({
   genderOptions
 }: FilterCardProps) {
   return (
-    <Card sx={{ width: "78vw",mb: 4, mt: 4, p: 2, backgroundColor: '#1c1c1c', color: 'white' }}>
+    <Card sx={{ width: "100%",mb: 4, mt: 4, p: 2, backgroundColor: '#1c1c1c', color: 'white' }}>
       <CardContent>
         <Typography variant="h6" gutterBottom>Filters</Typography>
 

@@ -4,7 +4,7 @@ export const Hero = () => {
   return (
     <Box
       sx={{
-        backgroundImage: 'url("src/assets/img/500555-rick-and-morty.jpg")',
+        backgroundImage: 'url("public/img/500555-rick-and-morty.jpg")',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
