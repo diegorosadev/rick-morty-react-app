@@ -23,7 +23,7 @@ export const PaginationControls = ({ page, totalPages, onPrev, onNext }: Props) 
         Previous
     </Button>
 
-    <Typography>Page {page} of {totalPages}</Typography>
+    <Typography color='white'>Page {page} of {totalPages}</Typography>
 
     <Button
         variant="contained"

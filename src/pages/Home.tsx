@@ -18,7 +18,6 @@ export const Home = () => {
     const [gender, setGender] = useState('');
     const [name, setName] = useState('');
     const [page, setPage] = useState(1)
-    const [characters, setCharacters] = useState<Character[]>([])
     const [totalPages, setTotalPages] = useState(1)
 
     const statusOptions = ['Alive', 'Dead', 'unknown'];

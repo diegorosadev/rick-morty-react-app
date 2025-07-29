@@ -1,41 +1,132 @@
 import { useFavoritesStore } from '../store/useFavoritesStore'
-import { Card, CardMedia, CardContent, Typography, IconButton, Box } from '@mui/material'
-import DeleteIcon from '@mui/icons-material/Delete'
+import { Box } from '@mui/material'
+import { useEffect, useState } from 'react'
+import type { Character } from '../types/character'
+import { useQuery } from '@tanstack/react-query'
+import Hero from '../components/Hero'
+import FilterCard from '../components/FilterCard'
+import CharacterCard from '../components/CharacterCard'
+import { PaginationControls } from '../components/PaginationControls'
+import { Footer } from '../components/Footer'
+import { api } from '../services/api'
 
 export const Favorites = () => {
-  const { favorites, removeFavorite } = useFavoritesStore()
+  const { favorites, addFavorite, removeFavorite } = useFavoritesStore()
+  const [status, setStatus] = useState('')
+  const [species, setSpecies] = useState('')
+  const [gender, setGender] = useState('')
+  const [name, setName] = useState('')
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+
+  const statusOptions = ['Alive', 'Dead', 'unknown']
+  const speciesOptions = ['Human', 'Alien', 'Robot', 'Animal', 'Mythological', 'unknown']
+  const genderOptions = ['Male', 'Female', 'Genderless', 'unknown']
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['characters', page],
+    queryFn: async () => {
+      const res = await api.get(`/character?page=${page}`)
+      return res.data as { results: Character[]; info: { pages: number } }
+    }
+  })
+
+  useEffect(() => {
+    if (data?.info?.pages) {
+      setTotalPages(data.info.pages)
+    }
+  }, [data])
+
+  const toggleFavorite = (char: Character) => {
+    const isFav = favorites.some((f) => f.id === char.id)
+    isFav ? removeFavorite(char.id) : addFavorite(char)
+  }
+
+  const filteredCharacters = (data?.results ?? []).filter((char: Character) => {
+    return (
+      favorites.some((f) => f.id === char.id) &&
+      (status ? char.status.toLowerCase() === status.toLowerCase() : true) &&
+      (species ? char.species.toLowerCase() === species.toLowerCase() : true) &&
+      (gender ? char.gender.toLowerCase() === gender.toLowerCase() : true) &&
+      (name ? char.name.toLowerCase().includes(name.toLowerCase()) : true)
+    )
+  })
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <Typography variant="h4" gutterBottom>My Favorites</Typography>
+    <Box sx={{ width: '100%', overflowX: 'hidden', backgroundColor: '#202329' }}>
+      <Hero />
 
       <Box
-      sx={{
-        display: 'grid',
-        gap: 2,
-        gridTemplateColumns: {
-          xs: '1fr',
-          sm: 'repeat(2, 1fr)',
-          md: 'repeat(3, 1fr)',
-          lg: 'repeat(4, 1fr)'
-        }
-      }}
-    >
-        {favorites.map((char) => {
-             return (
-            <Card key={char.id}>
-              <CardMedia component="img" height="200" image={char.image} alt={char.name} />
-              <CardContent>
-                <Typography variant="h6">{char.name}</Typography>
-                <IconButton onClick={() => removeFavorite(char.id)} color="error">
-                  <DeleteIcon />
-                </IconButton>
-              </CardContent>
-            </Card>
-             )
-            })}
+        sx={{
+          width: '100%',
+          minHeight: '320px',
+          color: '#111',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          position: 'relative',
+          px: 2,
+          py: 4,
+        }}
+      >
+        <FilterCard
+          status={status}
+          setStatus={setStatus}
+          species={species}
+          setSpecies={setSpecies}
+          gender={gender}
+          setGender={setGender}
+          name={name}
+          setName={setName}
+          statusOptions={statusOptions}
+          speciesOptions={speciesOptions}
+          genderOptions={genderOptions}
+        />
+
+        {isLoading && <p style={{ color: '#fff' }}>Loading...</p>}
+
+        <Box sx={{ width: '100%', maxWidth: '1280px', mt: 4 }}>
+          <Box
+            sx={{
+              display: 'grid',
+              gap: 2,
+              gridTemplateColumns: {
+                xs: '1fr',
+                sm: 'repeat(2, 1fr)',
+                md: 'repeat(3, 1fr)',
+                lg: 'repeat(4, 1fr)',
+              },
+            }}
+          >
+            {isLoading
+              ? Array.from({ length: 8 }).map((_, i) => (
+                  <CharacterCard key={i} loading />
+                ))
+              : filteredCharacters.map((char) => (
+                  <CharacterCard
+                    key={char.id}
+                    character={char}
+                    isFavorite
+                    onToggleFavorite={() => toggleFavorite(char)}
+                  />
+                ))}
+          </Box>
+        </Box>
       </Box>
-    </div>
+
+        {!isLoading && filteredCharacters.length > 20 && totalPages > 1 && (
+        <PaginationControls
+            page={page}
+            totalPages={totalPages}
+            onPrev={() => setPage(page - 1)}
+            onNext={() => setPage(page + 1)}
+        />
+        )}
+
+      <Footer />
+    </Box>
   )
 }
-export default Favorites;
+
+export default Favorites

@@ -1,20 +1,17 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Button, Box, Badge } from '@mui/material';
+import { AppBar, Toolbar, Button, Box } from '@mui/material';
 import { lazy, Suspense } from 'react'; 
-import { useFavoritesStore } from './store/useFavoritesStore'; 
 
 const Home = lazy(() => import('./pages/Home'));
 const Favorites = lazy(() => import('./pages/Favorites'));
 const CharacterDetail = lazy(() => import('./pages/CharacterDetail'));
 
 function App() {
-  const { favorites } = useFavoritesStore(); 
 
   return (
     <BrowserRouter>
       <AppBar position="fixed" sx={{ width: '100%', backgroundColor: '#0a0a0a' }}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          {/* Logo alinhada à esquerda */}
           <Box
             component="img"
             src="src/assets/img/rick-and-morty-logo.svg"
@@ -22,7 +19,6 @@ function App() {
             sx={{ width: 100, height: 'auto' }}
           />
 
-          {/* Botões alinhados à direita */}
           <Box display="flex" gap={2}>
             <Button
               color={location.pathname === '/' ? 'primary' : 'inherit'}
