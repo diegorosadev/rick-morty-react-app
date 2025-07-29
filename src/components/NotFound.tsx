@@ -16,7 +16,7 @@ export const NotFound = ({ message = 'Not found' }: NotFoundProps) => {
                 justifyContent: 'center',
                 textAlign: 'center',
                 color: '#fff',
-                backgroundImage: 'url("public/img/03fdb791c0c8753db54348da091ba79b.jpeg")',
+                backgroundImage: 'url("/img/03fdb791c0c8753db54348da091ba79b.jpeg")',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
