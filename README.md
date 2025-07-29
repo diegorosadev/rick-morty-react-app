@@ -21,6 +21,19 @@ Aplicação React com TypeScript + Material UI para explorar personagens da sér
 
 ---
 
+💡 Funcionalidades
+🔍 Buscar e visualizar personagens da API pública
+
+💖 Adicionar/remover favoritos com Zustand
+
+📺 Listar episódios em que o personagem aparece
+
+🌐 Layout responsivo com Material UI
+
+🚀 Deploy automático via Vercel
+
+---
+
 ## 🧪 Instalação e Execução Local
 
 ```bash
