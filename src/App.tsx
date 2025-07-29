@@ -13,29 +13,34 @@ function App() {
   return (
     <BrowserRouter>
       <AppBar position="fixed" sx={{ width: '100%', backgroundColor: '#0a0a0a' }}>
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Rick and Morty
-          </Typography>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          {/* Logo alinhada à esquerda */}
+          <Box
+            component="img"
+            src="src/assets/img/rick-and-morty-logo.svg"
+            alt="Rick and Morty Logo"
+            sx={{ width: 100, height: 'auto' }}
+          />
 
-          <Button   
-            color={location.pathname === '/' ? 'primary' : 'inherit'}
-            component={Link}
-            to="/"
-          >
-          🏠 Home
-          </Button>
-
-          <Button 
-            color={location.pathname === '/favorites' ? 'primary' : 'inherit'}
-            component={Link}
-            to="/favorites"
-          >
-            <Badge badgeContent={favorites.length} color="success">
-              💚 Favoritos
-            </Badge>
-          </Button>
+          {/* Botões alinhados à direita */}
+          <Box display="flex" gap={2}>
+            <Button
+              color={location.pathname === '/' ? 'primary' : 'inherit'}
+              component={Link}
+              to="/"
+            >
+              🏠 HOME
+            </Button>
+            <Button
+              color={location.pathname === '/favorites' ? 'primary' : 'inherit'}
+              component={Link}
+              to="/favorites"
+            >
+              💚 FAVORITOS
+            </Button>
+          </Box>
         </Toolbar>
+
       </AppBar>
 
       <Box sx={{ mt: 10, px: 2 }}>

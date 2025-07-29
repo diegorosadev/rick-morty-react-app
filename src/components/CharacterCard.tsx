@@ -58,6 +58,7 @@ import {
           borderRadius: 3,
           overflow: 'hidden',
           position: 'relative',
+          width: "300px"
         }}
       >
         <CardMedia
@@ -121,7 +122,14 @@ import {
             justifyContent: "center",
 
           }}>
-            <Button onClick={() => navigate(`/character/${character.id}`)}>
+            <Button
+                sx={{
+                    color: '#00BCD4',
+                    '&:hover': {
+                    color: '#00acc1',
+                    }
+                }}
+                onClick={() => navigate(`/character/${character.id}`)}>
                 Show Details
             </Button>
           </Box>

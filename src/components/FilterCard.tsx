@@ -28,7 +28,7 @@ export default function FilterCard({
   genderOptions
 }: FilterCardProps) {
   return (
-    <Card sx={{ width: "1200px",mb: 4, mt: 4, p: 2, backgroundColor: '#1c1c1c', color: 'white' }}>
+    <Card sx={{ width: "1210px",mb: 4, mt: 4, p: 2, backgroundColor: '#1c1c1c', color: 'white' }}>
       <CardContent>
         <Typography variant="h6" gutterBottom>Filters</Typography>
 
@@ -39,8 +39,26 @@ export default function FilterCard({
             value={name}
             onChange={(e) => setName(e.target.value)}
             fullWidth
-            InputProps={{ style: { color: 'white' } }}
-            InputLabelProps={{ style: { color: 'gray' } }}
+            sx={{
+                '& .MuiOutlinedInput-root': {
+                  color: 'white',
+                  '& fieldset': {
+                    borderColor: 'gray',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#00BCD4', 
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#00BCD4', 
+                  },
+                },
+                '& .MuiInputLabel-root': {
+                  color: 'gray',
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#00BCD4',
+                },
+              }}
           />
 
             <TextField
@@ -49,8 +67,26 @@ export default function FilterCard({
             value={status}
             onChange={(e) => setStatus(e.target.value)}
             fullWidth
-            InputProps={{ style: { color: 'white' } }}
-            InputLabelProps={{ style: { color: 'gray' } }}
+            sx={{
+                '& .MuiOutlinedInput-root': {
+                  color: 'white',
+                  '& fieldset': {
+                    borderColor: 'gray',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#00BCD4', 
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#00BCD4', 
+                  },
+                },
+                '& .MuiInputLabel-root': {
+                  color: 'gray',
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#00BCD4',
+                },
+              }}
             >
             <MenuItem value="">
                 <em>Select status</em>
@@ -66,8 +102,26 @@ export default function FilterCard({
             value={species}
             onChange={(e) => setSpecies(e.target.value)}
             fullWidth
-            InputProps={{ style: { color: 'white' } }}
-            InputLabelProps={{ style: { color: 'gray' } }}
+            sx={{
+                '& .MuiOutlinedInput-root': {
+                  color: 'white',
+                  '& fieldset': {
+                    borderColor: 'gray',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#00BCD4', 
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#00BCD4', 
+                  },
+                },
+                '& .MuiInputLabel-root': {
+                  color: 'gray',
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#00BCD4',
+                },
+              }}
           >
             <MenuItem value="">
                 <em> Select Species </em>
@@ -83,8 +137,26 @@ export default function FilterCard({
             value={gender}
             onChange={(e) => setGender(e.target.value)}
             fullWidth
-            InputProps={{ style: { color: 'white' } }}
-            InputLabelProps={{ style: { color: 'gray' } }}
+            sx={{
+                '& .MuiOutlinedInput-root': {
+                  color: 'white',
+                  '& fieldset': {
+                    borderColor: 'gray',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#00BCD4', 
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#00BCD4', 
+                  },
+                },
+                '& .MuiInputLabel-root': {
+                  color: 'gray',
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#00BCD4',
+                },
+              }}
           >
             <MenuItem value="">
                 <em> Select Gender</em>

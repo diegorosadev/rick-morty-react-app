@@ -1,19 +1,14 @@
 import { useQuery } from '@tanstack/react-query'
 import { api } from '../services/api'
 import { useFavoritesStore } from '../store/useFavoritesStore'
-import {
-  Card, CardMedia, CardContent, Typography, IconButton, Box,
-  Button
-} from '@mui/material'
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-import { useNavigate } from 'react-router-dom'
+import { Box } from '@mui/material'
 import { useEffect, useState } from 'react'
 import FilterCard from '../components/FilterCard';
 import CharacterCard from '../components/CharacterCard'
 import type { Character } from '../types/character'
 import Hero from '../components/Hero'
 import { PaginationControls } from '../components/PaginationControls'
+import { Footer } from '../components/Footer'
 
 export const Home = () => {
     
@@ -58,84 +53,90 @@ export const Home = () => {
     )
   })
   
-
   return (
-<Box sx={{ width: '100%', overflowX: 'hidden' }}>
-
-        <Hero />
-        <Box sx={{ 
+    <Box 
+        sx={{ 
             width: '100%',
-            overflowX: 'hidden',
-            minHeight: '320px',
-            backgroundColor: '#202329',
-            color: '#111',
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            position: 'relative',
-            px: 2,
-         }}>
+            overflowX: 'hidden', 
+            backgroundColor: '#202329' 
+        }}>
 
-        <FilterCard
-            status={status}
-            setStatus={setStatus}
-            species={species}
-            setSpecies={setSpecies}
-            gender={gender}
-            setGender={setGender}
-            name={name}
-            setName={setName}
-            statusOptions={statusOptions}
-            speciesOptions={speciesOptions}
-            genderOptions={genderOptions}
-            />
+            <Hero />
 
-    
-        {isLoading && <p>Loading...</p>}
-    
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Box
-            sx={{
-                display: 'grid',
-                gap: 2,
-                gridTemplateColumns: {
-                    xs: '1fr',
-                    sm: 'repeat(2, 1fr)',
-                    md: 'repeat(3, 1fr)',
-                    lg: 'repeat(4, 1fr)',
-                },
-            }}
-            >
-        {isLoading
-        ? Array.from({ length: 8 }).map((_, i) => (
-            <CharacterCard key={i} loading />
-            ))
-        : filteredCharacters.map((char: Character) => {
-            const isFav = favorites.some((f) => f.id === char.id)
-            return (
-                <CharacterCard
-                key={char.id}
-                character={char}
-                isFavorite={isFav}
-                onToggleFavorite={() => toggleFavorite(char)}
+            <Box sx={{ 
+                width: '100%',
+                overflowX: 'hidden',
+                minHeight: '320px',
+                color: '#111',
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                position: 'relative',
+                px: 2,
+            }}>
+
+            <FilterCard
+                status={status}
+                setStatus={setStatus}
+                species={species}
+                setSpecies={setSpecies}
+                gender={gender}
+                setGender={setGender}
+                name={name}
+                setName={setName}
+                statusOptions={statusOptions}
+                speciesOptions={speciesOptions}
+                genderOptions={genderOptions}
                 />
-            )
-            })
-        }
 
-        </Box>
-        </Box>
-    </Box>
+        
+            {isLoading && <p>Loading...</p>}
+        
+            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Box
+                    sx={{
+                        display: 'grid',
+                        gap: 2,
+                        gridTemplateColumns: {
+                            xs: '1fr',
+                            sm: 'repeat(2, 1fr)',
+                            md: 'repeat(3, 1fr)',
+                            lg: 'repeat(4, 1fr)',
+                        },
+                    }}
+                    >
+                {isLoading
+                ? Array.from({ length: 8 }).map((_, i) => (
+                    <CharacterCard key={i} loading />
+                    ))
+                : filteredCharacters.map((char: Character) => {
+                    const isFav = favorites.some((f) => f.id === char.id)
+                    return (
+                        <CharacterCard
+                        key={char.id}
+                        character={char}
+                        isFavorite={isFav}
+                        onToggleFavorite={() => toggleFavorite(char)}
+                        />
+                    )
+                    })
+                }
 
-    <PaginationControls
-        page={page}
-        totalPages={totalPages}
-        onPrev={() => setPage(page - 1)}
-        onNext={() => setPage(page + 1)}
+                </Box>
+            </Box>
+        </Box>
+
+        <PaginationControls
+            page={page}
+            totalPages={totalPages}
+            onPrev={() => setPage(page - 1)}
+            onNext={() => setPage(page + 1)}
         />
 
+        <Footer />
     </Box>
+    
   )  
 }
 export default Home;

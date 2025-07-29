@@ -8,15 +8,35 @@ interface Props {
 }
 
 export const PaginationControls = ({ page, totalPages, onPrev, onNext }: Props) => (
-  <Box display="flex" justifyContent="center" mt={4} gap={2}>
-    <Button variant="contained" disabled={page === 1} onClick={onPrev}>
-      Previous
+  <Box display="flex" justifyContent="center" alignItems="center" mt={4} gap={2}>
+    <Button
+        variant="contained"
+        disabled={page === 1}
+        onClick={onPrev}
+        sx={{
+            backgroundColor: '#00BCD4',
+            '&:hover': {
+            backgroundColor: '#00acc1',
+            }
+        }}
+    >
+        Previous
     </Button>
 
     <Typography>Page {page} of {totalPages}</Typography>
 
-    <Button variant="contained" disabled={page === totalPages} onClick={onNext}>
-      Next
+    <Button
+        variant="contained"
+        disabled={page === totalPages}
+        onClick={onNext}
+        sx={{
+            backgroundColor: '#00BCD4',
+            '&:hover': {
+            backgroundColor: '#00acc1',
+            }
+        }}
+    >
+        Next
     </Button>
   </Box>
 )
