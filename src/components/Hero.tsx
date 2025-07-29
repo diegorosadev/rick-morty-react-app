@@ -4,6 +4,10 @@ export const Hero = () => {
   return (
     <Box
       sx={{
+        backgroundImage: 'url("src/assets/img/500555-rick-and-morty.jpg")',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
         width: '100%', 
         minHeight: '520px',
         backgroundColor: 'white',
@@ -43,16 +47,22 @@ export const Hero = () => {
           zIndex: 0,
         }}
       />
-      <Typography
+        <Typography
         variant="h2"
         sx={{
-          fontWeight: 900,
-          zIndex: 2,
-          fontSize: { xs: '2rem', sm: '3rem', md: '4rem' },
+            fontWeight: 900,
+            fontSize: { xs: '2rem', sm: '3rem', md: '4rem' },
+            color: '#00ff90', 
+            letterSpacing: '0.1em',
+            textShadow: '2px 2px #000', 
+            transform: 'skewX(-5deg)',
+            zIndex: 2,
+            fontFamily: 'monospace',
         }}
-      >
+        >
         The Rick and Morty Characters
-      </Typography>
+        </Typography>
+
 
       <Box
         sx={{
