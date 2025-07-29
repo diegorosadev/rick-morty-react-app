@@ -21,7 +21,8 @@ Aplicação React com TypeScript + Material UI para explorar personagens da sér
 
 ---
 
-💡 Funcionalidades
+💡 Funcionalidades:
+
 🔍 Buscar e visualizar personagens da API pública
 
 💖 Adicionar/remover favoritos com Zustand
