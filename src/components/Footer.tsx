@@ -26,8 +26,15 @@ export const Footer = () => {
         </Typography>
 
         <Stack direction="row" spacing={3} justifyContent="center" sx={{ mt: 1 }}>
-          <img src="/netlify.svg" alt="Netlify" height={20} />
-          <img src="/stellate.svg" alt="Stellate" height={20} />
+            <Stack alignItems="center">
+                <Typography variant="caption" color="gray">Deployed on Vercel</Typography>
+                <img src="src\assets\img\Vercel_logo_2025.svg" alt="Vercel" height={20} />
+            </Stack>
+
+            <Stack alignItems="center">
+                <Typography variant="caption" color="gray">Built with React</Typography>
+                <img src="src\assets\img\React_logo_wordmark.png" alt="React" height={20} />
+            </Stack>
         </Stack>
 
         <Stack direction="row" spacing={2} justifyContent="center" sx={{ mt: 1 }}>
@@ -37,7 +44,7 @@ export const Footer = () => {
         </Stack>
 
         <Typography variant="caption" sx={{ mt: 2 }}>
-          &lt;/&gt;Created by <Link href="https://github.com/diegorosadev" color="inherit" underline="hover">Diego Rosa</Link> {new Date().getFullYear()}
+          &lt;/&gt; Created by <Link href="https://github.com/diegorosadev" color="inherit" underline="hover">Diego Rosa</Link> {new Date().getFullYear()}
         </Typography>
       </Stack>
     </Box>

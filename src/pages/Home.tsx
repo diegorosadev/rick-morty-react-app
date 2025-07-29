@@ -53,26 +53,26 @@ export const Home = () => {
   })
   
   return (
-    <Box 
-        sx={{ 
-            width: '100vw',
-            backgroundColor: '#202329',
-            margin: 0,
-            padding: 0,
-        }}>
-
-            <Hero />
-
-            <Box sx={{ 
-                width: '100%',
-                minHeight: '320px',
-                color: '#111',
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                position: 'relative',
-            }}>
+     <Box 
+         sx={{ 
+             width: '100vw',
+             backgroundColor: '#202329',
+             margin: 0,
+             padding: 0,
+         }}>
+ 
+             <Hero />
+ 
+             <Box sx={{ 
+                 width: '100%',
+                 minHeight: '320px',
+                 color: '#111',
+                 display: "flex",
+                 flexDirection: "column",
+                 justifyContent: "center",
+                 alignItems: "center",
+                 position: 'relative',
+             }}>
 
             <FilterCard
                 status={status}

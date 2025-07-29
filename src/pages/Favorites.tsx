@@ -1,5 +1,5 @@
 import { useFavoritesStore } from '../store/useFavoritesStore'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import type { Character } from '../types/character'
 import { useQuery } from '@tanstack/react-query'
@@ -9,6 +9,7 @@ import CharacterCard from '../components/CharacterCard'
 import { PaginationControls } from '../components/PaginationControls'
 import { Footer } from '../components/Footer'
 import { api } from '../services/api'
+import NotFound from '../components/NotFound'
 
 export const Favorites = () => {
   const { favorites, addFavorite, removeFavorite } = useFavoritesStore()
@@ -115,6 +116,11 @@ export const Favorites = () => {
                     onToggleFavorite={() => toggleFavorite(char)}
                   />
                 ))}
+
+            {!isLoading
+             && filteredCharacters.length === 0 && <NotFound message="No favorite characters found." />}
+
+
           </Box>
         </Box>
       </Box>
