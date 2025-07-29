@@ -15,9 +15,8 @@ Aplicação React com TypeScript + Material UI para explorar personagens da sér
 | UI               | [Material UI (MUI)](https://mui.com/)                                                                                                       |
 | API              | [TanStack Query](https://tanstack.com/query/latest) (`@tanstack/react-query`)                                                              |
 | Estado Global    | [Zustand](https://zustand-demo.pmnd.rs/) (para favoritos, contador, etc)                                                                   |
-| Estilo           | SCSS modular ou `sx` do MUI (100% integrado ao Material UI)                                                                                 |
+| Estilo           | `sx` do MUI (100% integrado ao Material UI)                                                                                 |
 | Requisições HTTP | [Axios](https://axios-http.com/)                                                                                                            |
-| Formulários      | [React Hook Form](https://react-hook-form.com/) *(opcional, para filtros com validação)*                                                   |
 | Deploy           | [Vercel](https://vercel.com/) *(CI/CD automático, rápido e gratuito)*                                                                      |
 
 ---
