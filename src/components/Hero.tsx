@@ -12,6 +12,7 @@ export const Hero = () => {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
+        position: 'relative'
       }}
     >
       <Typography
