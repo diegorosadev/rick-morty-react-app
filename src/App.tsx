@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { AppBar, Toolbar, Button, Box } from '@mui/material';
 import { lazy, Suspense } from 'react'; 
+import { TabNavigation } from './components/TabNavigation';
 
 const Home = lazy(() => import('./pages/Home'));
 const Favorites = lazy(() => import('./pages/Favorites'));
@@ -20,20 +21,7 @@ function App() {
           />
 
           <Box display="flex" gap={2}>
-            <Button
-              color={location.pathname === '/' ? 'primary' : 'inherit'}
-              component={Link}
-              to="/"
-            >
-              🏠 HOME
-            </Button>
-            <Button
-              color={location.pathname === '/favorites' ? 'primary' : 'inherit'}
-              component={Link}
-              to="/favorites"
-            >
-              💚 FAVORITOS
-            </Button>
+            <TabNavigation />
           </Box>
         </Toolbar>
 

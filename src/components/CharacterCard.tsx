@@ -75,7 +75,7 @@ import {
             top: 8,
             right: 8,
             backgroundColor: 'rgba(0,0,0,0.5)',
-            color: '#fff',
+            color: '#00e676',
             '&:hover': {
               backgroundColor: 'rgba(0,0,0,0.7)',
             },

@@ -53,52 +53,57 @@ export const Favorites = () => {
   })
 
   return (
-    <Box sx={{ width: '100%', overflowX: 'hidden', backgroundColor: '#202329' }}>
-      <Hero />
+ <Box 
+        sx={{ 
+            width: '100%',
+            overflowX: 'hidden', 
+            backgroundColor: '#202329' 
+        }}>
 
-      <Box
-        sx={{
-          width: '100%',
-          minHeight: '320px',
-          color: '#111',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          position: 'relative',
-          px: 2,
-          py: 4,
-        }}
-      >
-        <FilterCard
-          status={status}
-          setStatus={setStatus}
-          species={species}
-          setSpecies={setSpecies}
-          gender={gender}
-          setGender={setGender}
-          name={name}
-          setName={setName}
-          statusOptions={statusOptions}
-          speciesOptions={speciesOptions}
-          genderOptions={genderOptions}
-        />
+            <Hero />
+
+            <Box sx={{ 
+                width: '100%',
+                overflowX: 'hidden',
+                minHeight: '320px',
+                color: '#111',
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                position: 'relative',
+                px: 2,
+            }}>
+
+            <FilterCard
+                status={status}
+                setStatus={setStatus}
+                species={species}
+                setSpecies={setSpecies}
+                gender={gender}
+                setGender={setGender}
+                name={name}
+                setName={setName}
+                statusOptions={statusOptions}
+                speciesOptions={speciesOptions}
+                genderOptions={genderOptions}
+                />
 
         {isLoading && <p style={{ color: '#fff' }}>Loading...</p>}
 
-        <Box sx={{ width: '100%', maxWidth: '1280px', mt: 4 }}>
-          <Box
-            sx={{
-              display: 'grid',
-              gap: 2,
-              gridTemplateColumns: {
-                xs: '1fr',
-                sm: 'repeat(2, 1fr)',
-                md: 'repeat(3, 1fr)',
-                lg: 'repeat(4, 1fr)',
-              },
-            }}
-          >
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Box
+                    sx={{
+                        display: 'grid',
+                        gap: 2,
+                        gridTemplateColumns: {
+                            xs: '1fr',
+                            sm: 'repeat(2, 1fr)',
+                            md: 'repeat(3, 1fr)',
+                            lg: 'repeat(4, 1fr)',
+                        },
+                    }}
+                    >
             {isLoading
               ? Array.from({ length: 8 }).map((_, i) => (
                   <CharacterCard key={i} loading />
