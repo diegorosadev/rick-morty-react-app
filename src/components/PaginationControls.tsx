@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const PaginationControls = ({ page, totalPages, onPrev, onNext }: Props) => (
-  <Box display="flex" justifyContent="center" alignItems="center" mt={4} gap={2}>
+  <Box display="flex" justifyContent="center" alignItems="center" mb={4} mt={4} gap={2}>
     <Button
         variant="contained"
         disabled={page === 1}

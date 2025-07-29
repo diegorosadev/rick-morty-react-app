@@ -74,8 +74,10 @@ export const Favorites = () => {
                 alignItems: "center",
                 position: 'relative',
             }}>
-
-            <FilterCard
+                
+        {!isLoading
+             && filteredCharacters.length > 0 && 
+                <FilterCard
                 status={status}
                 setStatus={setStatus}
                 species={species}
@@ -88,7 +90,8 @@ export const Favorites = () => {
                 speciesOptions={speciesOptions}
                 genderOptions={genderOptions}
                 />
-
+             }
+        
         {isLoading && <p style={{ color: '#fff' }}>Loading...</p>}
 
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>

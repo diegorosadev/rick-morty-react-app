@@ -72,6 +72,7 @@ export const Home = () => {
                  justifyContent: "center",
                  alignItems: "center",
                  position: 'relative',
+                 
              }}>
 
             <FilterCard

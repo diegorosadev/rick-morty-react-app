@@ -12,11 +12,10 @@ export const Footer = () => {
         bgcolor: '#1A1A1D',
         color: '#ccc',
         py: 4,
-        mt: 8,
         textAlign: 'center',
       }}
     >
-      <Stack spacing={1} alignItems="center">
+      <Stack spacing={3} alignItems="center">
         <Typography variant="body2">
           CHARACTERS: 826 &nbsp; | &nbsp; LOCATIONS: 126 &nbsp; | &nbsp; EPISODES: 51
         </Typography>

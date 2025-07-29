@@ -16,6 +16,33 @@ export const Hero = () => {
         mt: 4
       }}
     >
+
+<img
+        src="src\assets\img\rick.svg"
+        alt="Rick"
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '30%',
+          transform: 'translate(-50%, -50%)',
+          opacity: 0.05,
+          width: '350px',
+          zIndex: 0,
+        }}
+      />
+      <img
+        src="src\assets\img\morty.svg"
+        alt="Morty"
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '70%',
+          transform: 'translate(-50%, -50%)',
+          opacity: 0.05,
+          width: '350px',
+          zIndex: 0,
+        }}
+      />
       <Typography
         variant="h2"
         sx={{
