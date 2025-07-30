@@ -17,7 +17,7 @@ Aplicação React com TypeScript + Material UI para explorar personagens da sér
 | Estado Global    | [Zustand](https://zustand-demo.pmnd.rs/) (para favoritos, contador, etc)                                                                   |
 | Estilo           | `sx` do MUI (100% integrado ao Material UI)                                                                                 |
 | Requisições HTTP | [Axios](https://axios-http.com/)                                                                                                            |
-| Deploy           | [Vercel](https://vercel.com/) *(CI/CD automático, rápido e gratuito)*                                                                      |
+| Deploy           | [Vercel](https://vercel.com/) *(CI/CD automático e rápido)*                                                                      |
 
 ---
 
